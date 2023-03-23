@@ -1,0 +1,5 @@
+com\term\demo\model\User.class
+com\term\demo\mapper\UserMapper.class
+com\term\demo\cotroller\UserController.class
+com\term\demo\ProjectApplication.class
+com\term\demo\service\UserService.class
