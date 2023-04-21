@@ -4,6 +4,8 @@ import com.term.demo.model.PageParam;
 import com.term.demo.model.User;
 import com.term.demo.resp.WrapResult;
 import com.term.demo.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +19,7 @@ import java.util.HashMap;
 @RequestMapping("/user")
 @CrossOrigin(origins="*")
 public class UserController {
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @Value("${test.hello:TEST}") // TEST默认值
     private String testHello;
@@ -31,6 +34,7 @@ public class UserController {
 
     @GetMapping("/list")
     public WrapResult getList(PageParam pageParam){
+        log.info("pageParam=> {}",pageParam.toString());
         pageParam.setStart((pageParam.getPageNum()-1)* pageParam.getPageSize());
         pageParam.setEnd(pageParam.getPageSize());
         System.out.println(pageParam.toString());
