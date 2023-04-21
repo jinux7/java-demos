@@ -12,7 +12,7 @@ public class LogInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        System.out.println("------------- LogInterceptor 开始 -------------");
+        System.out.println("------------- LogInterceptor start -------------");
         System.out.println("拦截器请求地址：" + request.getRequestURL().toString() +" "+ request.getMethod());
         System.out.println("拦截器远程地址：" + request.getRemoteAddr());
 

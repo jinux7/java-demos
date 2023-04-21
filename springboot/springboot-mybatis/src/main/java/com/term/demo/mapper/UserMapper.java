@@ -1,9 +1,11 @@
 package com.term.demo.mapper;
 
+import com.term.demo.model.PageParam;
 import com.term.demo.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
@@ -12,5 +14,13 @@ public interface UserMapper {
     List<User> getAllUsers();
 
     User getUserById(int id);
+    ArrayList<User> getUserList(PageParam pageParam);
 
+    ArrayList<User> getAllUserList();
+
+    void addUser(User user);
+
+    void updateUser(User user);
+
+    void delUserById(int id);
 }

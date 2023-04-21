@@ -3,7 +3,37 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.term.demo.mapper.UserMapper">
-    <select id="getUserById" parameterType="_int" resultType="com.term.demo.model.User">
-        select * from user where id=#{id}
+    <resultMap type="com.term.demo.model.User" id="UserResult">
+        <id     property="id"      column="id"      />
+        <result property="name"    column="name"    />
+        <result property="sexy"     column="sexy"     />
+        <result property="age"   column="age"   />
+        <result property="job"    column="job"    />
+        <result property="hobby"      column="hobby"      />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+    <select id="getUserById" parameterType="_int" resultMap="UserResult">
+        select * from users where id=#{id};
+    </select>
+
+    <select id="getUserList" parameterType="com.term.demo.model.PageParam"  resultMap="UserResult">
+        select * from users limit #{start}, #{end};
+    </select>
+
+    <select id="getAllUserList" resultMap="UserResult">
+        select * from users;
+    </select>
+
+    <select id="addUser" parameterType="com.term.demo.model.User">
+        INSERT INTO users(name, sexy, age, job, hobby, create_time) VALUES(#{name}, #{sexy}, #{age}, #{job}, #{hobby}, NOW());
+    </select>
+
+    <select id="updateUser" parameterType="com.term.demo.model.User">
+        UPDATE users SET name=#{name}, sexy=#{sexy}, age=#{age}, job=#{job}, hobby=#{hobby}, update_time=NOW() WHERE id=#{id};
+    </select>
+
+    <select id="delUserById" parameterType="int">
+        DELETE FROM users WHERE id=#{id}
     </select>
 </mapper>
