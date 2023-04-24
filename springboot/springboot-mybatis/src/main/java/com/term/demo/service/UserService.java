@@ -1,5 +1,6 @@
 package com.term.demo.service;
 
+import com.github.pagehelper.PageHelper;
 import com.term.demo.mapper.UserMapper;
 import com.term.demo.model.PageParam;
 import com.term.demo.model.User;
@@ -19,9 +20,12 @@ public class UserService {
     }
 
     public ArrayList<User> getUserList(PageParam pageParam) {
+        // 之前是自己写的分页，现在引入了PageHelper插件，不用自己的了
+        // ArrayList<User> list = userMapper.getUserList(pageParam);
 
-        ArrayList<User> list = userMapper.getUserList(pageParam);
-//        System.out.println("list" + list.toString());
+        // 使用PageHelper插件
+        PageHelper.startPage(pageParam.getPageNum(), pageParam.getPageSize());
+        ArrayList<User> list = userMapper.getAllUserList();
         return list;
     }
 

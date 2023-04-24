@@ -4,6 +4,7 @@ import com.term.demo.model.PageParam;
 import com.term.demo.model.User;
 import com.term.demo.resp.WrapResult;
 import com.term.demo.service.UserService;
+import com.term.demo.util.redis.RedisCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,8 @@ import java.util.HashMap;
 @CrossOrigin(origins="*")
 public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
-
+    @Autowired
+    private RedisCache redisCache;
     @Value("${test.hello:TEST}") // TEST默认值
     private String testHello;
     @Autowired
@@ -34,7 +36,16 @@ public class UserController {
 
     @GetMapping("/list")
     public WrapResult getList(PageParam pageParam){
-        log.info("pageParam=> {}",pageParam.toString());
+        Integer sessionObj = redisCache.getCacheObject("testNum");
+        if(sessionObj==null) {
+            redisCache.setCacheObject("testNum", 1);
+        }else {
+            sessionObj = sessionObj + 1;
+            redisCache.setCacheObject("testNum", sessionObj);
+            log.info("sessionObj=> {}",sessionObj);
+
+        }
+//        log.info("pageParam=> {}",pageParam.toString());
         pageParam.setStart((pageParam.getPageNum()-1)* pageParam.getPageSize());
         pageParam.setEnd(pageParam.getPageSize());
         System.out.println(pageParam.toString());

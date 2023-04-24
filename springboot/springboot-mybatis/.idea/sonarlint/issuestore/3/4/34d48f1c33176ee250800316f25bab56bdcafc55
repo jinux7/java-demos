@@ -1,0 +1,13 @@
+
+~
+java:S2629"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(ùˆð§þÿÿÿÿ8ŠÖº—ú0
+~
+java:S2629"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(šèÁÜýÿÿÿÿ8ÓŸ»—ú0
+c
+java:S3457"AFormat specifiers should be used instead of string concatenation.(ùˆð§þÿÿÿÿ8£Öº—ú0
+^
+java:S3457"AFormat specifiers should be used instead of string concatenation.(•ôƒÅ8†ùº—ú0
+c
+java:S3457"AFormat specifiers should be used instead of string concatenation.(šèÁÜýÿÿÿÿ8àŸ»—ú0
+`
+java:S1128"CRemove this unused import 'com.term.demo.cotroller.UserController'.(°ùäÂ8ãæ¸—ú0

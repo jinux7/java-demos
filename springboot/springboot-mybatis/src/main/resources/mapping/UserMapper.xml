@@ -14,23 +14,23 @@
         <result property="updateTime"    column="update_time"    />
     </resultMap>
     <select id="getUserById" parameterType="_int" resultMap="UserResult">
-        select * from users where id=#{id};
+        select * from users where id=#{id}
     </select>
 
     <select id="getUserList" parameterType="com.term.demo.model.PageParam"  resultMap="UserResult">
-        select * from users limit #{start}, #{end};
+        select * from users limit #{start}, #{end}
     </select>
 
     <select id="getAllUserList" resultMap="UserResult">
-        select * from users;
+        select * from users
     </select>
 
     <select id="addUser" parameterType="com.term.demo.model.User">
-        INSERT INTO users(name, sexy, age, job, hobby, create_time) VALUES(#{name}, #{sexy}, #{age}, #{job}, #{hobby}, NOW());
+        INSERT INTO users(name, sexy, age, job, hobby, create_time) VALUES(#{name}, #{sexy}, #{age}, #{job}, #{hobby}, NOW())
     </select>
 
     <select id="updateUser" parameterType="com.term.demo.model.User">
-        UPDATE users SET name=#{name}, sexy=#{sexy}, age=#{age}, job=#{job}, hobby=#{hobby}, update_time=NOW() WHERE id=#{id};
+        UPDATE users SET name=#{name}, sexy=#{sexy}, age=#{age}, job=#{job}, hobby=#{hobby}, update_time=NOW() WHERE id=#{id}
     </select>
 
     <select id="delUserById" parameterType="int">
