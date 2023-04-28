@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive, getCurrentInstance, onMounted } from 'vue'
+import { encrypt, decrypt } from '@/utils/jsencrypt.js';
 import axios from 'axios'
 const baseUrl = 'http://localhost:8888';
 
@@ -19,6 +20,7 @@ const dialogFormVisible = ref(false);
 const currentRowId = ref(undefined);
 const form = reactive({
   name: '',
+  passwordPre: '',
   sexy: null,
   age: null,
   job: '',
@@ -49,6 +51,7 @@ const onAddUser = ev=> {
   dialogType.value = 'add';
   dialogFormVisible.value = true;
   form.name = '';
+  form.passwordPre = '';
   form.sexy = null;
   form.age = null;
   form.job = '';
@@ -61,6 +64,7 @@ const readHandler = id=> {
   getUserById(id).then(res=> {
     const da = res.data.result;
     form.name = da.name;
+    form.passwordPre = decrypt(da.password),
     form.sexy = da.sexy;
     form.age = da.age;
     form.job = da.job;
@@ -73,6 +77,7 @@ const editHandler = row=> {
   dialogFormVisible.value = true;
   currentRowId.value = row.id;
   form.name = row.name;
+    form.passwordPre = decrypt(da.password),
   form.sexy = row.sexy;
   form.age = row.age;
   form.job = row.job;
@@ -92,8 +97,7 @@ const delHandler = id=> {
 }
 // 弹出框的确认按钮回调
 const onDialogHandler = ev=> {
-  // console.log();
-  // return ;
+  form.password = encrypt(form.passwordPre);
   dialogFormVisible.value = false;
   let apiName = dialogType.value==='add'?'add':'update';
   let successMsg = dialogType.value==='add'?'添加成功':'修改成功';
@@ -166,6 +170,9 @@ const onDialogHandler = ev=> {
       <el-form :model="form" :disabled="dialogType==='read'" label-width="120px">
         <el-form-item label="姓名：">
           <el-input v-model="form.name" placeholder="请输入"  autocomplete="off" style="width:100%;"/>
+        </el-form-item>
+        <el-form-item label="密码：">
+          <el-input v-model="form.passwordPre" placeholder="请输入"  autocomplete="off" style="width:100%;"/>
         </el-form-item>
         <el-form-item label="性别：">
           <el-select v-model="form.sexy" placeholder="请选择" style="width:100%;">
