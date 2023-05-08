@@ -1,8 +1,12 @@
 <script setup>
-import { reactive, ref, onBeforeMount } from 'vue';
+import { reactive, ref, onBeforeMount, getCurrentInstance } from 'vue';
+import { useRouter } from 'vue-router';
 import { login } from '@/api';
 import { encrypt } from '@/utils/jsencrypt.js';
+import { setToken } from '@/utils/cookie.js';
 
+const self = getCurrentInstance();
+const router = useRouter();
 // 变量定义
 const formData = reactive({
   loginName: '',
@@ -33,10 +37,24 @@ const submitLogin = async formRef=> {
   await formRef.validate((valid, fields) => {
     if (valid) {
       formData.password = encrypt(formData.passwordPre);
-      login(formData).then(res=> {
-
+      let param = {
+        loginName: formData.loginName,
+        password: formData.password,
+        uuid: 'abcdefg',
+        code: formData.code
+      }
+      login(param).then(res=> {
+        const da = res.data;
+        if(da.status===200) {
+          self.appContext.config.globalProperties.$message.success('登陆成功');
+          setToken(da.result.token);
+          router.replace({
+            name: 'user'
+          });
+        }else {
+          self.appContext.config.globalProperties.$message.error(da.result);
+        }
       });
-      console.log('submit!')
     } else {
       console.log('error submit!', fields)
     }

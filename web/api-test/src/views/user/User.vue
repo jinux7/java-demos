@@ -77,7 +77,7 @@ const editHandler = row=> {
   dialogFormVisible.value = true;
   currentRowId.value = row.id;
   form.name = row.name;
-    form.passwordPre = decrypt(da.password),
+    form.passwordPre = decrypt(row.password),
   form.sexy = row.sexy;
   form.age = row.age;
   form.job = row.job;
@@ -139,7 +139,7 @@ const onDialogHandler = ev=> {
         <el-table-column label="年龄" width="180" prop="age" />
         <el-table-column label="职业" width="180" prop="job" />
         <el-table-column label="爱好" width="180" prop="hobby" />
-        <el-table-column label="操作" width="200">
+        <el-table-column label="操作">
           <template #default="scope">
             <el-button 
               size="small" 
@@ -169,7 +169,7 @@ const onDialogHandler = ev=> {
     <el-dialog v-model="dialogFormVisible" title="添加user" >
       <el-form :model="form" :disabled="dialogType==='read'" label-width="120px">
         <el-form-item label="姓名：">
-          <el-input v-model="form.name" placeholder="请输入"  autocomplete="off" style="width:100%;"/>
+          <el-input v-model="form.name" placeholder="请输入" :disabled="dialogType==='edit'"  autocomplete="off" style="width:100%;"/>
         </el-form-item>
         <el-form-item label="密码：">
           <el-input v-model="form.passwordPre" placeholder="请输入"  autocomplete="off" style="width:100%;"/>
