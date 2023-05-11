@@ -1,4 +1,7 @@
-import axios from 'axios'
+import axios from 'axios';
+import { getToken, removeToken } from '@/utils/cookie.js';
+import router from '@/router';
+import { ElMessage } from 'element-plus'; 
 
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 // 创建axios实例
@@ -11,9 +14,9 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(config => {
-    // if (getToken() && !isToken) {
-    //   config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
-    // }
+    if (getToken()) {  
+      config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+    }
     
     return config
   }, error => {
@@ -23,6 +26,12 @@ service.interceptors.request.use(config => {
   
 // 响应拦截器
 service.interceptors.response.use(res => {
+    const status = res.data.status;
+    if(status===401) {
+      removeToken();
+      router.push('/login');
+      ElMessage.warning(res.data.result);
+    }
     return res;
   },
   error => {

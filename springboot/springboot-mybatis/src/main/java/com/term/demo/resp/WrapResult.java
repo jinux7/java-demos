@@ -47,6 +47,13 @@ public class WrapResult {
         return wrapResult;
     }
 
+    public static WrapResult resultErrorUnAuth(Object result) {
+        WrapResult wrapResult = new WrapResult(result);
+        wrapResult.setStatus(HttpStatus.UNAUTHORIZED);
+        wrapResult.setMessage("error");
+        return wrapResult;
+    }
+
     @Override
     public String toString() {
         return "WrapResult{" +

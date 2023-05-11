@@ -1,0 +1,14 @@
+
+‹
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(€á´÷ıÿÿÿÿ
+†
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¡‘È
+‹
+java:S13192"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Á¤æÀüÿÿÿÿ
+r
+java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "list".(é¤áï
+r
+java:S1488 "\Immediately return this expression instead of assigning it to the temporary variable "list".(é¤áï
+e
+java:S3252"OUse static access with "com.github.pagehelper.page.PageMethod" for "startPage".(‹¿Œ
+P	java:S125"<This block of commented-out lines of code should be removed.(É ¯V

@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) Not NULL,
+  `password` varchar(255) Not NULL,
   `sexy` char(1) Not NULL,
   `age` int(3) Not NULL,
   `job` varchar(32) Not NULL,

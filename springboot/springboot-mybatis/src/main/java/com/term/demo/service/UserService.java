@@ -15,7 +15,6 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
     public User getUserById(int id){
-//        System.out.println(id);
         return userMapper.getUserById(id);
     }
 
@@ -44,6 +43,11 @@ public class UserService {
     }
 
     public void delUserById(int id) {
+
         userMapper.delUserById(id);
+    }
+
+    public ArrayList<User> getUserListByName(User user) {
+        return userMapper.getUserListByName(user);
     }
 }

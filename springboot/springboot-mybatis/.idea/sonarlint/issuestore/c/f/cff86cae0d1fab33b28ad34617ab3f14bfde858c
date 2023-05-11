@@ -1,0 +1,12 @@
+
+X	java:S1258"<This block of commented-out lines of code should be removed.(±Ö°±8Ö’€øÿ0
+P
+java:S1128":Remove this unused import 'com.term.demo.model.PageParam'.(õïĞ»
+T
+java:S1128">Remove this unused import 'com.term.demo.service.UserService'.(©£ñ
+e
+java:S1128"ORemove this unused import 'org.springframework.beans.factory.annotation.Value'.(ìø›
+f
+java:S1128"PRemove this unused import 'org.springframework.validation.annotation.Validated'.(¸ÒÖƒ
+D
+java:S1068"'Remove this unused "log" private field.(çšı×8Ø’€øÿ0

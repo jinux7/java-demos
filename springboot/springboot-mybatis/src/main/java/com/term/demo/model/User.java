@@ -10,6 +10,8 @@ public class User implements Serializable {
     private int id;
     @NotBlank(message = "名字不能为空")
     private String name;
+    @NotBlank(message = "密码不能为空")
+    private String password;
     @NotBlank(message = "请选择性别")
     private String sexy;
     @NotNull(message = "年龄不能为空")
@@ -29,6 +31,14 @@ public class User implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {

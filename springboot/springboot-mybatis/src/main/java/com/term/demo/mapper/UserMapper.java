@@ -1,5 +1,6 @@
 package com.term.demo.mapper;
 
+import com.term.demo.model.Login;
 import com.term.demo.model.PageParam;
 import com.term.demo.model.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +24,7 @@ public interface UserMapper {
     void updateUser(User user);
 
     void delUserById(int id);
+
+    ArrayList<User> getUserListByLogin(Login login);
+    ArrayList<User> getUserListByName(User user);
 }

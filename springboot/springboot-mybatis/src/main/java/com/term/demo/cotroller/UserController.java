@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/user")
@@ -29,22 +30,12 @@ public class UserController {
     private UserService service;
     @GetMapping("/{id}")
     public WrapResult getUser(@PathVariable int id){
-
         User user = service.getUserById(id);
         return WrapResult.resultSuccess(user);
     }
 
     @GetMapping("/list")
     public WrapResult getList(PageParam pageParam){
-        Integer sessionObj = redisCache.getCacheObject("testNum");
-        if(sessionObj==null) {
-            redisCache.setCacheObject("testNum", 1);
-        }else {
-            sessionObj = sessionObj + 1;
-            redisCache.setCacheObject("testNum", sessionObj);
-            log.info("sessionObj=> {}",sessionObj);
-
-        }
 //        log.info("pageParam=> {}",pageParam.toString());
         pageParam.setStart((pageParam.getPageNum()-1)* pageParam.getPageSize());
         pageParam.setEnd(pageParam.getPageSize());
@@ -59,10 +50,14 @@ public class UserController {
 
     @PostMapping("/add")
     public  WrapResult add(@Valid @RequestBody User user) {
-//        String sexy = user.getSexy()=="1"?"男":"女";
-//        user.setSexy(sexy);
-        service.addUser(user);
-        return WrapResult.resultSuccess("添加user成功");
+        ArrayList list = service.getUserListByName(user);
+        if(list.isEmpty()) {
+            service.addUser(user);
+            return WrapResult.resultSuccess("添加user成功");
+        }else {
+            return WrapResult.resultError("用户名已存在，请换一个");
+        }
+//        log.info("{}", list);
     }
 
     @PostMapping("/update")

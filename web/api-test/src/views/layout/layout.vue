@@ -1,16 +1,19 @@
+<script setup>
+import Nav from '@/components/nav.vue';
+</script>
 <template>
   <div>
     <div class="wrap-nav">
-
-  </div>
-  <div class="wrap-body">
-    <header>
-      header
-    </header>
-    <section>
-      <router-view></router-view>
-    </section>
-  </div>
+      <Nav></Nav>
+    </div>
+    <div class="wrap-body">
+      <header>
+        header
+      </header>
+      <section>
+        <router-view></router-view>
+      </section>
+    </div>
   </div>
 </template>
 <style lang="less" scoped>

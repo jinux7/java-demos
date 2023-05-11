@@ -30,11 +30,16 @@ public class GlobalExceptionHandler
      * 全局异常
      */
     @ExceptionHandler(Exception.class)
-    public WrapResult handleMethodArgumentNotValidException(Exception e, HttpServletRequest request)
+    public WrapResult handleException(Exception e, HttpServletRequest request)
     {
 //        System.out.println(e.getMessage());
         return WrapResult.resultError(e.toString());
     }
 
-
+    // 拦截器登陆过起无权限异常
+    @ExceptionHandler(UnAuthException.class)
+    public WrapResult handleUnAuthException(Exception e, HttpServletRequest request)
+    {
+        return WrapResult.resultErrorUnAuth("登录过期，请重新登录");
+    }
 }

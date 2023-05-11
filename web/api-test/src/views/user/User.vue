@@ -2,6 +2,8 @@
 import { ref, reactive, getCurrentInstance, onMounted } from 'vue'
 import { encrypt, decrypt } from '@/utils/jsencrypt.js';
 import axios from 'axios'
+import { getUserList, getUserById, delUserById, addUser, updateUser } from '../../api';
+
 const baseUrl = 'http://localhost:8888';
 
 
@@ -32,13 +34,8 @@ onMounted(()=> {
   getList();
 });
 
-const getUserById = id=> {
-  return axios.get(baseUrl + '/user/' + id);
-}
-
 const getList = ev=> {
-  // pageParam.pageNum = pageNum || 1;
-  axios.get(baseUrl + '/user/list', {
+  getUserList({
     params: pageParam
   }).then(res=> {
     tableData.value = res.data.result.list;
@@ -85,7 +82,7 @@ const editHandler = row=> {
 }
 // table的删除按钮
 const delHandler = id=> {
-  axios.get(baseUrl + '/user/del/' + id).then(res=> {
+  delUserById(id).then(res=> {
     if(res.data.status==200) {
       self.appContext.config.globalProperties.$message.success('删除成功');
       getList();
@@ -99,10 +96,10 @@ const delHandler = id=> {
 const onDialogHandler = ev=> {
   form.password = encrypt(form.passwordPre);
   dialogFormVisible.value = false;
-  let apiName = dialogType.value==='add'?'add':'update';
+  let apiName = dialogType.value==='add'?addUser:updateUser;
   let successMsg = dialogType.value==='add'?'添加成功':'修改成功';
   form.id = dialogType.value==='add'?undefined:currentRowId;
-  axios.post(baseUrl + '/user/' + apiName, form).then(res=> {
+  apiName(form).then(res=> {
     if(res.data.status==200) {
       self.appContext.config.globalProperties.$message.success(successMsg);
       getList();

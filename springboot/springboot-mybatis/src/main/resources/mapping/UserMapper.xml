@@ -6,6 +6,7 @@
     <resultMap type="com.term.demo.model.User" id="UserResult">
         <id     property="id"      column="id"      />
         <result property="name"    column="name"    />
+        <result property="password"    column="password"    />
         <result property="sexy"     column="sexy"     />
         <result property="age"   column="age"   />
         <result property="job"    column="job"    />
@@ -26,14 +27,22 @@
     </select>
 
     <select id="addUser" parameterType="com.term.demo.model.User">
-        INSERT INTO users(name, sexy, age, job, hobby, create_time) VALUES(#{name}, #{sexy}, #{age}, #{job}, #{hobby}, NOW())
+        INSERT INTO users(name, password, sexy, age, job, hobby, create_time) VALUES(#{name}, #{password}, #{sexy}, #{age}, #{job}, #{hobby}, NOW())
     </select>
 
     <select id="updateUser" parameterType="com.term.demo.model.User">
-        UPDATE users SET name=#{name}, sexy=#{sexy}, age=#{age}, job=#{job}, hobby=#{hobby}, update_time=NOW() WHERE id=#{id}
+        UPDATE users SET name=#{name}, password=#{password}, sexy=#{sexy}, age=#{age}, job=#{job}, hobby=#{hobby}, update_time=NOW() WHERE id=#{id}
     </select>
 
     <select id="delUserById" parameterType="int">
         DELETE FROM users WHERE id=#{id}
+    </select>
+
+    <select id="getUserListByLogin" parameterType="com.term.demo.model.Login" resultMap="UserResult">
+        SELECT * FROM `users` WHERE name=#{loginName} AND `password`=#{password}
+    </select>
+
+    <select id="getUserListByName" parameterType="com.term.demo.model.User" resultMap="UserResult">
+        SELECT * FROM `users` WHERE name=#{name}
     </select>
 </mapper>

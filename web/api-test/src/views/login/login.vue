@@ -62,7 +62,7 @@ const submitLogin = async formRef=> {
 }
 </script>
 <template>
-  <div class="wrap-login-out">
+  <div class="wrap-login-out" @keydown.enter="submitLogin(formRef)">
     <el-card class="wrap-login">
       <el-form :model="formData" :rules="rules" ref="formRef" label-width="80px">
         <el-form-item label="用户名" prop="loginName">
