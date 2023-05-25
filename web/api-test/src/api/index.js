@@ -4,6 +4,10 @@ import request from '@/utils/request';
 export const login = (data)=> {
   return request.post('login', data);
 }
+// 获取路由menu
+export const getMenu = data=> {
+  return request.get('getmenu');
+}
 
 // user 获取列表
 export const getUserList = (data)=> {

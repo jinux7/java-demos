@@ -16,20 +16,32 @@ const onNavClick = name=> {
 <template>
   <div>
     <el-menu
+        :unique-opened="true"
         @open="handleOpen"
         @close="handleClose"
       >
         <div v-for="(item, index) in store.navList" :key="index">
-          <el-sub-menu v-if="item.children&&item.children.length>0" :index="item.path">
+          <el-sub-menu v-if="item.children&&item.children.length>1&&item.show==='1'" :index="item.path">
             <template #title>
-              <el-icon><location /></el-icon>
+              <el-icon><component :is="item.meta.icon" /></el-icon>
               <span>{{ item.meta.title }}</span>
             </template>
-            <el-menu-item v-for="(ele, idx) in item.children" :key="idx" :index="item.path+ele.path" 
-              @click="onNavClick(ele.name)">
-              {{ ele.meta.title }}
-            </el-menu-item>
+            <div v-for="(ele, idx) in item.children" :key="idx">
+              <el-menu-item :index="item.path+ele.path" 
+                @click="onNavClick(ele.name)"
+                v-if="ele.show==='1'">
+                <el-icon><component :is="ele.meta.icon" /></el-icon>
+                <span>
+                  {{ ele.meta.title }}
+                </span>
+              </el-menu-item>
+            </div>
           </el-sub-menu>
+          <el-menu-item v-if="item.children&&item.children.length===1&&item.show==='1'"
+            @click="onNavClick(item.children[0].name)">
+            <el-icon><component :is="item.children[0].meta.icon" /></el-icon>
+            <span>{{ item.children[0].meta.title }}</span>
+          </el-menu-item>
         </div>
       </el-menu>
   </div>

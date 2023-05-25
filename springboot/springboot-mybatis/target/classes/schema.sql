@@ -33,6 +33,30 @@ CREATE TABLE `users` (
    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+---- ----------------------------
+---- Table structure for menu
+---- ----------------------------
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `path` varchar(64) DEFAULT NULL,
+  `name` varchar(64) DEFAULT NULL,
+  `icon` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `title` varchar(64) DEFAULT NULL,
+  `show` char(1) DEFAULT '0',
+  `component` varchar(64) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+insert into `menu` values(1, '/nava/', null, 'connection', 'nava', '1', 'layout/layout', 0);
+insert into `menu` values(2, 'a1', 'navaA1', 'clock', 'nava-a1', '1', 'layout/content', 1);
+insert into `menu` values(3, 'a2', 'navaA2', 'bell', 'nava-a2', '1', 'layout/content', 1);
+insert into `menu` values(4, 'a3', 'navaA3', 'bell', 'nava-a3', '0', 'layout/content', 1);
+insert into `menu` values(5, '/navb/', null, 'setting', 'navb', '1', 'layout/layout', 0);
+insert into `menu` values(6, 'b1', 'navbB1', 'edit', 'navb-b1', '1', 'layout/content', 5);
+insert into `menu` values(7, 'b2', 'navbB2', 'editPen', 'navb-b2', '1', 'layout/content', 5);
 
 --
 ---- ----------------------------

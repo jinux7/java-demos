@@ -3,8 +3,10 @@ package com.term.demo.cotroller;
 import com.term.demo.model.Login;
 import com.term.demo.model.PageParam;
 import com.term.demo.model.User;
+import com.term.demo.resp.Menu;
 import com.term.demo.resp.WrapResult;
 import com.term.demo.service.LoginService;
+import com.term.demo.service.MenuService;
 import com.term.demo.service.UserService;
 import com.term.demo.util.UUIDUtil;
 import com.term.demo.util.redis.RedisCache;
@@ -29,7 +31,8 @@ public class LoginController {
     private RedisCache redisCache;
     @Autowired
     private LoginService loginService;
-
+    @Autowired
+    private MenuService menuService;
     @PostMapping("/login")
     public  WrapResult login(@Valid @RequestBody Login login) {
         ArrayList<User> list = loginService.getUserListByLogin(login);
@@ -42,6 +45,13 @@ public class LoginController {
         }else {
             return WrapResult.resultError("用户名不存在或密码错误");
         }
+    }
+
+    // 获取路由menu
+    @GetMapping("/getmenu")
+    public WrapResult getmenu() {
+        ArrayList<Menu> list = menuService.getMenu();
+        return WrapResult.resultSuccess(list);
     }
 
     // 设置redis测试接口
