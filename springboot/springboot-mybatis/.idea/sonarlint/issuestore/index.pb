@@ -39,8 +39,6 @@ k
 0src/main/java/com/term/demo/resp/HttpStatus.java,2\c\2ce378a027b148dd1a7d02620ce997a323c4224a
 Z
 *src/main/java/com/term/demo/resp/Menu.java,c\2\c24f6889415a825038855b5503d86ca8131e41fa
-j
-:src/main/java/com/term/demo/cotroller/LoginController.java,c\f\cff86cae0d1fab33b28ad34617ab3f14bfde858c
 b
 2src/main/java/com/term/demo/mapper/UserMapper.java,8\8\885ade2b4db3eaefe66bc9c741c9752f3e50ee3a
 d
@@ -51,3 +49,5 @@ b
 2src/main/java/com/term/demo/mapper/MenuMapper.java,7\9\79f483580e8215842d407fa548f9684a2bc35c94
 d
 4src/main/java/com/term/demo/service/MenuService.java,1\8\1801dc41d9c5257fb02ba0eb3314f53335b92f40
+j
+:src/main/java/com/term/demo/cotroller/LoginController.java,c\f\cff86cae0d1fab33b28ad34617ab3f14bfde858c
