@@ -1,15 +1,0 @@
-
-y
-java:S2629"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(›¯ö8§¾Ã—ú0
-~
-java:S2629"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(å¬¶Óúÿÿÿÿ8§¾Ã—ú0
-œ
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ü›ºÆıÿÿÿÿ
-^
-java:S3457"AFormat specifiers should be used instead of string concatenation.(›¯ö8±¾Ã—ú0
-c
-java:S3457"AFormat specifiers should be used instead of string concatenation.(ÔÑ§ışÿÿÿÿ8²¾Ã—ú0
-c
-java:S3457"AFormat specifiers should be used instead of string concatenation.(å¬¶Óúÿÿÿÿ8³¾Ã—ú0
-b
-java:S1128"ERemove this unused import 'com.term.demo.interceptor.LogInterceptor'.(‰áë8ÛÓ¾—ú0

@@ -57,6 +57,8 @@ insert into `menu` values(4, 'a3', 'navaA3', 'bell', 'nava-a3', '0', 'layout/con
 insert into `menu` values(5, '/navb/', null, 'setting', 'navb', '1', 'layout/layout', 0);
 insert into `menu` values(6, 'b1', 'navbB1', 'edit', 'navb-b1', '1', 'layout/content', 5);
 insert into `menu` values(7, 'b2', 'navbB2', 'editPen', 'navb-b2', '1', 'layout/content', 5);
+insert into `menu` values(8, '/user/', 'user', 'editPen', 'user', '1', 'layout/layout', 0);
+insert into `menu` values(9, 'userlist', 'userList', 'editPen', 'user列表', '1', 'user/User', 8);
 
 --
 ---- ----------------------------
